@@ -1,0 +1,38 @@
+{% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <center><h1>Admin Page</h1></center>
+                <hr>
+                <div class="row">
+                    {% for item in products %}
+                        <div class="col-md-3">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="category-image">
+                                        <img src="{{ item.get_image_url }}" alt="category image" class="w-100"/>
+                                    </div>
+                                    <h4 class="text-center">{{ item.small_description }}</h4>
+                                    <br>
+                                    <p>$ {{ item.selling_price }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>$ {{ item.original_price }}</del>
+                                    </p>
+                                    <br>
+                                    <p>Status: {{ item.status }}</p>
+                                </div>
+                                <div style="background-color: green;">
+                                    <center><a href="{% url 'remove-product' item.id %}" style="color: white">Remove Product</a></center>
+                                </div>
+                                <div style="background-color: green;">
+                                    <center><a href="{% url 'product-update' item.id %}" style="color: white">Update Product</a></center>
+                                </div>
+                            </div>
+                            </div>
+                    {% empty %}
+                        No products
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>

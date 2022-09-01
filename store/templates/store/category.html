@@ -1,0 +1,14 @@
+<div style="margin-left: 12px;">
+    <h1>All Categories : ({{num_category}})</h1>
+    <hr>
+    <div>
+        {% for category in categories %}
+            <div>
+                &nbsp;&nbsp;<a>{{ category }}</a>
+                <br>
+            </div>
+        {% empty %}
+            <p>No category</p>
+        {% endfor %}
+    </div>
+</div>

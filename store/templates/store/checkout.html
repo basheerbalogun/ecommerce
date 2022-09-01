@@ -1,0 +1,81 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class = 'container'>
+    <div class = 'row'>
+
+<!-- Shipping-Form Section -->
+
+        <div class = 'col-md-6'>
+          <div class="uk-width-xlarge uk-margin">
+              <div class="uk-card uk-card-small uk-card-default uk-card-body">
+                  <div id = 'shippingInfo'>
+                      <h2>You are almost done shopping!!</h2>
+                  </div>
+
+                  <form method="post" action="">
+                      <br><br>
+                      Enter the coupon below:<br><br>
+                      <input type="text" name="coupon" placeholder="Enter coupon code here">
+                      <br><br>
+                      Code :
+                      <div style="width: 18%; background-color: #d0d0d0">
+                          <p>go shopping</p>
+                      </div>
+                      <button>Submit</button>
+                  </form>
+
+
+              </div>
+          </div>
+      </div>
+
+
+
+
+      <!-- Cart Section -->
+
+
+      <div class = 'col-md-6'>
+          <div class="uk-width-xlarge uk-margin">
+              <div class="uk-card uk-card-small uk-card-default uk-card-body"><table class="table">
+                  <thead>
+                    <tr>
+
+                      <h2>Order Summary</h2>
+                      <h3><strong>Total: ${{cart.grandtotal|floatformat:'2'}}</strong></h3>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for item in cartitems %}
+                    <tr>
+
+                      <td scope="row"><div id = "cart_image"><img src = '{{item.product.get_image_url}}'></div></td>
+                      <td><h3>{{item.product.name}}</h3></td>
+                      <td><h3>x{{item.quantity}}</h3></td>
+                      <td><h3>${{item.product.selling_price}}</h3></td>
+                      <td><h3></h3></td>
+                      <td><h3>${{item.subtotal}}</h3></td>
+                    </tr>
+                   {% endfor %}
+
+                  </tbody>
+                </table></div></div>
+
+
+      </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=Adh8N0QDhyBTaQWh54Bmds8OoW49RaGEkuvQdD2vqgptO9rqwhMeKd0IL42lX3eJsbz9ewywzKZFRofh&currency=USD"></script>
+{% endblock %}

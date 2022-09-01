@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block content %}
+    <center>
+        <br><br><br><br><br><br>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            Username : <input type="text" name="username">
+        </div>
+        <br>
+        <div>
+            Password : <input type="password" name="password">
+        </div>
+        <br>
+        <div>
+            <input type="submit" value="Login">
+        </div>
+    </form>
+        <br>
+         <a href="{% url 'password_reset' %}">Reset password</a>
+    </center>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+    {% load static %}
+    <div style="border: #023020">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h1>My Account Info</h1>
+                <hr>
+                    <img src="{{ user_account.image.url }}">
+                    <p>Username : {{ user_account.user }}</p>
+                <div class="row">
+                  <form method="post", enctype="multipart/form-data" action="">
+                      {% csrf_token %}
+                      {{ u_form }}
+                      {{ p_form }}
+                      <input type="submit" value="Update">
+                  </form>
+                </div>
+
+                <button><a href="{% url 'password_change' %}">change password</a></button>
+                <button><a href="{% url 'password_reset' %}">Reset password</a></button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

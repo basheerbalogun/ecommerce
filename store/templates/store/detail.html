@@ -1,0 +1,31 @@
+{% block content %}
+
+<h1></h1>
+{% for product in products %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Collections</h1>
+                <hr>
+                <div class="row">
+                    {% for item in category%}
+                    <div class="col-md-3">
+                        <div class="card">
+                            <a href="">
+                                <div class="card-body">
+                                    <div class="category-image">
+                                        <img src="" alt="category image" class="w-100"/>
+                                    </div>
+                                    <h4 class="text-center">Item name here</h4>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>}
+{% endfor %}
+
+{% endblock %}

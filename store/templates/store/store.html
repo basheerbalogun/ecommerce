@@ -1,0 +1,32 @@
+{% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <center><h1>GO-Shopping Market For All Products</h1></center>
+                <hr>
+                <div class="row">
+                    {% for item in products %}
+                        <div class="col-md-3">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="category-image">
+                                        <img src="{{ item.get_image_url }}" alt="category image" class="w-100"/>
+                                    </div>
+                                    <h4 class="text-center">{{ item.small_description }}</h4>
+                                    <br>
+                                    <p>$ {{ item.selling_price }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>$ {{ item.original_price }}</del></p>
+                                </div>
+                                <div style="background-color: green;">
+                                    <center><a href="{% url 'add-to-cart' item.id %}" style="color: white">Add To Cart</a></center>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        No products
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>

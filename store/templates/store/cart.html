@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Quantity and Price Section -->
+    {% for message in messages %}
+        <br><br>
+        <center>
+            <div style="background-color: #FF6130; color: black; width: 20%">
+                <p>{{ message }}</p>
+            </div>
+        </center>
+    {% endfor %}
+<div class = 'container' style = "width: 70%">
+    <table class="table table-light table-hover">
+        <thead>
+          <tr>
+              <th scope="col"><button type="button" class="btn btn-primary btn-lg"><a href="{% url 'home' %}" style="color: white">Continue Shopping →</a></button></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <th scope="row"><h3><strong>Items: {{cart.cartquantity}} </strong></h3></th>
+            <td></td>
+            <td><h3><strong>Total: ${{ cart.total_of_items }}</strong></h3></td>
+            <!-- <td></td> -->
+
+            <td>
+              <a href = "{% url 'checkout' %}">
+                <button type="button" class="btn btn-primary btn-lg">Checkout →</button></a></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Cart Section -->
+<div class = 'container' style = 'margin-top: 50px; width: 70%'>
+<table class="table table-light table-hover"z>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"><h3><strong>Item</strong></h3></th>
+        <th scope="col"><h3><strong>Price</strong></h3></th>
+        <th scope="col"><h3><strong>Quantity</strong></h3></th>
+        <th scope="col"><h3><strong>Total</strong></h3></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for item in cartitems %}
+      <tr>
+        <th scope="row"><div id = "cart_image"><img src ='{{item.product.get_image_url}}'></div></th>
+        <td><h3>{{item.product.name}}</h3></td>
+        <td><h3>${{item.product.selling_price}}</h3></td>
+          <td><button type = 'number' class = 'quantity'  style = 'width: 50px; padding-left: 5px'>{{ item.quantity }}&nbsp;&nbsp;&nbsp;
+              <b><span><a href="{% url 'increment' item.id %}">&#8593;</a>&nbsp;&nbsp;&nbsp;<a href="{% url 'decrement' item.id %}">&#8595;</a></span></b></button></td>
+        <td><h3>${{item.subtotal | floatformat:2}}</h3></td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th scope="row"><div id = "cart_image"></div></th>
+        <td><h3></h3></td>
+        <td><h3></h3></td>
+        <td></td>
+        <td id = 'total'><h3><strong>${{cart.total_of_items | floatformat:2}}</strong></h3></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+{% endblock %}
